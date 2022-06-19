@@ -1,0 +1,30 @@
+{
+  "id": "3371990",
+  "name": "dao",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "29431485",
+      "name": "更多",
+      "font_class": "gengduo",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "29430742",
+      "name": "telegram",
+      "font_class": "telegram",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "29430743",
+      "name": "icon-kfckfc",
+      "font_class": "tuite_twitter43",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    }
+  ]
+}

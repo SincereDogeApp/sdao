@@ -1,0 +1,76 @@
+$border: #d8dce6;
+$tableBorder: #e0ecf5;
+$tableStripedBg: #edeff2;
+$bg: #fafbfc;
+$headerBg: #eff2f6;
+$blueBorderBtn: #a5d4ff;
+$blueBgBtn: #f7fbff;
+
+$colorPrimary: #ff6a00;
+$blue: #0486fe;
+$lightBlue: #94ccff;
+$green: #53de73;
+$orange: #ffa031;
+$red: #f26f6f;
+$lightRed: #ff7070;
+$white: #ffffff;
+$black: #3b3b3b;
+$lightBlack: #121212;
+$gray: #b0bcd0;
+$gray3: #b0bcd0;
+$gray6: #606266;
+$gray9: #909399;
+$lightGray: #eeeeee;
+
+$menuText: #ffffff;
+$menuActiveText: $colorPrimary;
+$subMenuActiveText: #ffffff; /* https://github.com/ElemeFE/element/issues/12951 */
+
+$menuBg: #20303f;
+$menuActiveBg: #32404d;
+$menuHover: $menuActiveBg;
+
+$subMenuBg: $menuBg;
+$subMenuHover: $menuActiveBg;
+$subMenuActiveBg: $menuActiveText;
+
+$wrapperWidth: 1200px;
+$navBarHeight: 65px;
+$mainContainer: 800px;
+$footerHeight: 0px; /* 适用于所有页面页脚高度 */
+$footerMainHeight: 100px; /* components组件中Footer组件高度，部分页面应用 */
+$sideBarWidth: 0px;
+
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+  menuText: $menuText;
+  menuActiveText: $menuActiveText;
+  subMenuActiveText: $subMenuActiveText;
+  menuBg: $menuBg;
+  menuActiveBg: $menuActiveBg;
+  menuHover: $menuHover;
+  subMenuBg: $subMenuBg;
+  subMenuHover: $subMenuHover;
+  $subMenuActiveBg: subMenuActiveBg;
+  sideBarWidth: $sideBarWidth;
+  $colorPrimary: $colorPrimary;
+  $lightBlue: $lightBlue;
+  $green: $green;
+  $orange: $orange;
+  $red: $red;
+  $lightRed: $lightRed;
+  $white: $white;
+  $black: $black;
+  $lightBlack: $lightBlack;
+  $gray3: $gray3;
+  $gray6: $gray6;
+  $gray9: $gray9;
+  $border: $border;
+  $tableBorder: $tableBorder;
+  $bg: $bg;
+  $headerBg: $headerBg;
+  $lightGray: $lightGray;
+  $blueBorderBtn: $blueBorderBtn;
+  $blueBgBtn: $blueBgBtn;
+}
