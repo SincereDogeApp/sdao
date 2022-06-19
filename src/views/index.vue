@@ -4,9 +4,9 @@
     <h1>IN THE REVOLUTION</h1>
     <img src="../assets/logo.png" />
     <p class="f24">
-      The purpose of Sincere DogeDao is to give everyone the opportunity to
+      The purpose of SincereDogeDao is to give everyone the opportunity to
       participate in investing, Whether they are rich or not, Let every sdao
-      holder feel the charm of Sincere DogeDao ecology
+      holder feel the charm of SincereDoge ecology
     </p>
     <el-button
       class="button"
