@@ -24,22 +24,28 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, ref } from "vue";
 import useTreasury from "../hooks/treasury";
 import usePropsal from "../hooks/propsal";
 import useStake from "../hooks/stake";
+import { ethers } from "ethers";
+import math from "@/utils/math";
 
 export default defineComponent({
   setup() {
     const { treasuryBalance } = useTreasury();
     const { contractPropsal } = usePropsal();
-    const { marketCap, getSdaoPrice } = useStake();
+    const { marketCap, getSdaoPrice, contractCult } = useStake();
     const totalStake = ref(0);
     const price = ref("0");
     const init = async () => {
       totalStake.value = (await contractPropsal.nextInvesteeFund()) * 25;
       price.value = await getSdaoPrice();
+      const number = Number(
+        ethers.utils.formatEther(await contractCult.totalSupply())
+      );
+      marketCap.value = math.multiplication(number, price.value, 4);
     };
 
     init();

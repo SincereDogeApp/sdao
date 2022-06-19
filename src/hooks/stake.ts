@@ -4,7 +4,6 @@ import dcult from "../abis/dcult.json";
 import lp from "../abis/lp.json";
 import { ethers } from "ethers";
 import useWallet from "./wallet";
-import math from "@/utils/math";
 
 const addressCult = "0x8425C28e0f3fadcA56E2C31D81C2987642D7dA32";
 const addressDcult = "0x149988cD83d11b35209e4b211CaCeDf8956d8Ee2";
@@ -57,12 +56,12 @@ export default function useCult() {
       }
     }
   };
-  (async () => {
-    const number = Number(
-      ethers.utils.formatEther(await contractCult.totalSupply())
-    );
-    marketCap.value = math.multiplication(number, 1, 4);
-  })();
+  // (async () => {
+  //   const number = Number(
+  //     ethers.utils.formatEther(await contractCult.totalSupply())
+  //   );
+  //   marketCap.value = math.multiplication(number, 1, 4);
+  // })();
   watchEffect(async () => {
     getBalance();
   });
