@@ -220,10 +220,10 @@ export default defineComponent({
         this.init();
       }
     },
-	handleOpenTwitter() {
+    handleOpenTwitter() {
       window.open("https://twitter.com/sincere_doge/");
     },
-	handleOpenTelegram() {
+    handleOpenTelegram() {
       window.open("https://t.me/SincereDoge_Global");
     },
     handleOpen() {
