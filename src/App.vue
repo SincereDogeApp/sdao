@@ -165,6 +165,7 @@
     <footer>
       <img src="./assets/footer1.png" />
       <img src="./assets/footer2.png" />
+      <img src="./assets/footer3.png" @click="handleOpen" />
       <!-- <i class="iconfont icon-telegram cb4b4b9"></i>
       <i class="iconfont icon-tuite_twitter43 cb4b4b9"></i> -->
     </footer>
@@ -218,6 +219,9 @@ export default defineComponent({
       if (!this.account) {
         this.init();
       }
+    },
+    handleOpen() {
+      window.open("https://sinceredogedao.gitbook.io/sinceredogedao/");
     },
   },
 });

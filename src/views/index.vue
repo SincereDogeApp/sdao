@@ -2,7 +2,7 @@
   <div class="w80">
     <h1>INVESTING</h1>
     <h1>IN THE REVOLUTION</h1>
-    <img src="../assets/logo.png" />
+    <img src="../assets/13.gif" />
     <p class="f24">
       The purpose of SincereDogeDao is to give everyone the opportunity to
       participate in investing, Whether they are rich or not, Let every sdao
