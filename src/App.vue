@@ -163,8 +163,8 @@
       <component :is="Component" />
     </router-view>
     <footer>
-      <img src="./assets/footer1.png" />
-      <img src="./assets/footer2.png" />
+      <img src="./assets/footer1.png" @click="handleOpenTwitter"/>
+      <img src="./assets/footer2.png" @click="handleOpenTelegram"/>
       <img src="./assets/footer3.png" @click="handleOpen" />
       <!-- <i class="iconfont icon-telegram cb4b4b9"></i>
       <i class="iconfont icon-tuite_twitter43 cb4b4b9"></i> -->
@@ -219,6 +219,12 @@ export default defineComponent({
       if (!this.account) {
         this.init();
       }
+    },
+	handleOpenTwitter() {
+      window.open("https://twitter.com/sincere_doge/");
+    },
+	handleOpenTelegram() {
+      window.open("https://t.me/SincereDoge_Global");
     },
     handleOpen() {
       window.open("https://sinceredogedao.gitbook.io/sinceredogedao/");
