@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import abi from "@/abis/Governance.json";
 
-const address = "0x9570279209c3D950d167E7161c69C9D5e605C7A2";
+const address = "0x7a587969b25CEd1364f3Be3a84eBb285e482777E";
 
 //0x0831172B9b136813b0B35e7cc898B1398bB4d7e7
 export default function usePropsal() {

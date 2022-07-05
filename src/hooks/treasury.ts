@@ -8,7 +8,7 @@ export default function useTreasury() {
   // Governance Token  0x55fB886F828fB1DB0f76FC98E834bc1504d58f52
   const treasuryBalance = ref("0");
   const { init } = useWallet();
-  const address = "0x467b6bB2Abcc351b9d8E2BBCb0Cc9AB60F3A2dCf";
+  const address = "0x021143495164a586fE19F6e1a9C0B8C4120620bF";
   const provider = new ethers.providers.Web3Provider((window as any).ethereum);
   const signer = provider.getSigner();
   const contractTreasury = new ethers.Contract(address, treasury, provider);

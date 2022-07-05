@@ -5,9 +5,9 @@ import lp from "../abis/lp.json";
 import { ethers } from "ethers";
 import useWallet from "./wallet";
 
-const addressCult = "0x8425C28e0f3fadcA56E2C31D81C2987642D7dA32";
-const addressDcult = "0x149988cD83d11b35209e4b211CaCeDf8956d8Ee2";
-const addressLp = "0x257edcdc224a073555a1738f3ea8e638dd2d8a84";
+const addressCult = "0x0edF75489041a0eFE404E81b149Cfd8CEFAe4Fa0";
+const addressDcult = "0x441B5C322Ee8733326C37271142e4155066aAa7f";
+const addressLp = "0xAb5A63758bBbcbf5cAfb8F6ee4c5E12150d99880";
 const addressBNBLp = "0x58F876857a02D6762E0101bb5C46A8c1ED44Dc16";
 export default function useCult() {
   const cultBalance = ref("0");
