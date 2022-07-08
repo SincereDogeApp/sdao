@@ -91,7 +91,7 @@ export default function useWallet() {
     } catch (e: any) {
       ElNotification({
         title: "",
-        message: e.message,
+        message: "Transaction error",
         type: "error",
       });
     }

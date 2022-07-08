@@ -187,7 +187,7 @@ export default defineComponent({
       } catch (e: any) {
         ElNotification({
           title: "",
-          message: e.message,
+          message: "Transaction error",
           type: "error",
         });
       }
@@ -214,7 +214,7 @@ export default defineComponent({
           const result = await this.contractDcult
             .connect(this.signer)
             .deposit(0, ethers.utils.parseEther(this.balance), {
-              gasLimit: "0x7a120",
+              gasLimit: "0x16e360",
             });
           await this.contractCallback(result);
           this.getBalance();
