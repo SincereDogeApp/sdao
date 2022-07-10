@@ -235,7 +235,9 @@ export default defineComponent({
         this.withdrawLoading = true;
         const result = await this.contractDcult
           .connect(this.signer)
-          .withdraw(0, ethers.utils.parseEther(this.balance2));
+          .withdraw(0, ethers.utils.parseEther(this.balance2), {
+              gasLimit: "0x16e360",
+            });
 
         await this.contractCallback(result);
         this.getBalance();
