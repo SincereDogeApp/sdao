@@ -117,7 +117,7 @@
                 activeMenu = 3;
               "
             >
-              Propsals
+              Proposals
             </p>
             <p
               class="submenu"
