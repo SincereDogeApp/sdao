@@ -2,7 +2,7 @@
   <div class="submit">
     <div class="box" @click="handleClick('/propsals')"></div>
     <div class="container">
-      <p class="f20">Submit a Propsal</p>
+      <p class="f20">Submit a Proposal</p>
       <el-form
         :model="form"
         :label-position="'top'"
