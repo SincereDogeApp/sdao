@@ -61,7 +61,7 @@
             handleLink('/propsals');
             activeMenu = 3;
           "
-          >Propsals</span
+          >Proposals</span
         >
       </el-col>
       <el-col

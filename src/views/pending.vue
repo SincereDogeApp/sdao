@@ -15,7 +15,7 @@
             <span
               class="c27272d underline cursor"
               @click="handleClick('/detail', item)"
-              >Propsal({{ item.id }}):</span
+              >Proposal({{ item.id }}):</span
             >{{ item.title }}
           </p>
           <div class="back">
