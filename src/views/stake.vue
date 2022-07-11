@@ -67,7 +67,7 @@
           >Withdraw</el-button
         >
         <div class="flex">
-          <p class="f30">Claimable dSDAO</p>
+          <p class="f30">Claimable SDAO</p>
           <p class="f40">{{ Number(claimBalance).toFixed(4) ?? 0 }}</p>
         </div>
         <el-button
@@ -127,7 +127,10 @@ export default defineComponent({
     } = useStake();
 
     (async () => {
-      totalStake.value = (await contractPropsal.nextInvesteeFund()) * 25;
+      totalStake.value = (await contractPropsal.nextInvesteeFund()) * 80 - 40;
+      if(totalStake.value<0){
+        totalStake.value=0;
+      }
       console.log(contractDcult);
       try {
         const response = await contractDcult.highestStakerInPool(0, 0);
