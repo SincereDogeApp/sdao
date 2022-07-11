@@ -144,7 +144,7 @@ export default defineComponent({
                 startBlockNumber: Number(response.startBlock),
                 proposer: response.proposer,
                 description: JSON.stringify(description),
-                ended: endsIn.timestamp * 1000,
+                ended: (endsIn ? endsIn.timestamp : 0) * 1000,
               },
               response
             )
