@@ -16,7 +16,7 @@
             <span
               class="c27272d underline cursor"
               @click="handleClick('/detail', item)"
-              >Propsal({{ item.id }}):</span
+              >Proposal({{ item.id }}):</span
             >{{ item.title }}
           </p>
           <div class="back">
@@ -114,10 +114,11 @@ export default defineComponent({
           );
 
           const title = description.projectName;
-          //const nowBlock = await this.provider.getBlockNumber();
-          const endsIn = await this.provider.getBlock(
-            Number(response.endBlock)
-          );
+          const nowBlock = await this.provider.getBlockNumber();
+          let endsIn = { timestamp: 0 };
+          if (nowBlock >= Number(response.endBlock)) {
+            endsIn = await this.provider.getBlock(Number(response.endBlock));
+          }
 
           const again =
             Number(ethers.utils.formatEther(response.againstVotes)) || 0; //反对票
@@ -144,7 +145,7 @@ export default defineComponent({
                 startBlockNumber: Number(response.startBlock),
                 proposer: response.proposer,
                 description: JSON.stringify(description),
-                ended: (endsIn ? endsIn.timestamp : 0) * 1000,
+                ended: endsIn.timestamp * 1000,
               },
               response
             )
