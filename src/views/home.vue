@@ -40,7 +40,10 @@ export default defineComponent({
     const totalStake = ref(0);
     const price = ref("0");
     const init = async () => {
-      totalStake.value = (await contractPropsal.nextInvesteeFund()) * 80-40;
+      totalStake.value = (await contractPropsal.nextInvesteeFund()) * 80 - 40;
+      if(totalStake.value<0){
+        totalStake.value=0;
+      }
       price.value = await getSdaoPrice();
       const number = Number(
         ethers.utils.formatEther(await contractCult.totalSupply())
