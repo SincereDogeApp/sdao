@@ -10,7 +10,7 @@
     <p class="f20 title">Closed Proposals</p>
     <div class="container">
       <p v-if="arr.length === 0 && !loading" class="mt1">No Propsal</p>
-      <div v-if="arr.length > 0 && !loading">
+      <div v-if="arr.length > 0 && !loading" v-infinite-scroll="load">
         <div class="list f14" v-for="(item, key) in arr" :key="key">
           <p class="fb">
             <span
@@ -94,66 +94,77 @@ export default defineComponent({
     this.init();
   },
   methods: {
+    async load() {
+      let j = 3;
+      while (this.ids > 0 && j > 0) {
+        this.arr.push(...(await this.dataLoad(this.ids)));
+        this.ids--;
+        j--;
+        console.log(this.ids);
+      }
+      this.loading = false;
+    },
+    //处理提案
+    async dataLoad(i: number) {
+      const arrs = [];
+      //获取提案状态
+      const propsalState = await this.contractPropsal.state(i);
+      //监听事件
+      if ([2, 3, 6, 7].includes(propsalState)) {
+        const response: response = await this.contractPropsal.proposals(i);
+        const event = await this.contractPropsal.queryFilter(
+          this.contractPropsal.filters.ProposalCreated(),
+          Number(response.startBlock) - 1,
+          Number(response.startBlock)
+        );
+        const description = JSON.parse(
+          JSON.parse(event[0]!.args!.description).jsonStr
+        );
+
+        const title = description.projectName;
+        const nowBlock = await this.provider.getBlockNumber();
+        let endsIn = { timestamp: 0 };
+        if (nowBlock >= Number(response.endBlock)) {
+          endsIn = await this.provider.getBlock(Number(response.endBlock));
+        }
+
+        const again =
+          Number(ethers.utils.formatEther(response.againstVotes)) || 0; //反对票
+
+        const approve =
+          Number(ethers.utils.formatEther(response.forVotes)) || 0; //赞成票
+        const totalVotes = again + approve; //总票
+        const againstVote =
+          again === 0 ? 0 : ((again / totalVotes) * 100).toFixed(2);
+        console.log("反对票", againstVote, again, approve);
+        const forVote =
+          approve === 0 ? 0 : ((approve / totalVotes) * 100).toFixed(2);
+        arrs.push(
+          Object.assign(
+            {
+              ids: Number(response.id),
+              totalVotes,
+              title,
+              again,
+              approve,
+              propsalState,
+              forVote,
+              againstVote,
+              startBlockNumber: Number(response.startBlock),
+              proposer: response.proposer,
+              description: JSON.stringify(description),
+              ended: endsIn.timestamp * 1000,
+            },
+            response
+          )
+        );
+      }
+      return arrs;
+    },
     async init() {
       this.loading = true;
-      this.ids = (await this.contractPropsal.proposalCount()).toString();
-      const arrs = [];
-      for (let i = this.ids; i > 0; i--) {
-        //获取提案状态
-        const propsalState = await this.contractPropsal.state(i);
-        //监听事件
-        if ([2, 3, 6, 7].includes(propsalState)) {
-          const response: response = await this.contractPropsal.proposals(i);
-          const event = await this.contractPropsal.queryFilter(
-            this.contractPropsal.filters.ProposalCreated(),
-            Number(response.startBlock) - 1,
-            Number(response.startBlock)
-          );
-          const description = JSON.parse(
-            JSON.parse(event[0]!.args!.description).jsonStr
-          );
-
-          const title = description.projectName;
-          const nowBlock = await this.provider.getBlockNumber();
-          let endsIn = { timestamp: 0 };
-          if (nowBlock >= Number(response.endBlock)) {
-            endsIn = await this.provider.getBlock(Number(response.endBlock));
-          }
-
-          const again =
-            Number(ethers.utils.formatEther(response.againstVotes)) || 0; //反对票
-
-          const approve =
-            Number(ethers.utils.formatEther(response.forVotes)) || 0; //赞成票
-          const totalVotes = again + approve; //总票
-          const againstVote =
-            again === 0 ? 0 : ((again / totalVotes) * 100).toFixed(2);
-          console.log("反对票", againstVote, again, approve);
-          const forVote =
-            approve === 0 ? 0 : ((approve / totalVotes) * 100).toFixed(2);
-          arrs.push(
-            Object.assign(
-              {
-                ids: Number(response.id),
-                totalVotes,
-                title,
-                again,
-                approve,
-                propsalState,
-                forVote,
-                againstVote,
-                startBlockNumber: Number(response.startBlock),
-                proposer: response.proposer,
-                description: JSON.stringify(description),
-                ended: endsIn.timestamp * 1000,
-              },
-              response
-            )
-          );
-        }
-      }
-      this.arr = arrs;
-      this.loading = false;
+      this.ids = parseInt(await this.contractPropsal.proposalCount());
+      this.load();
     },
     handleClick(param: string, item: any) {
       const detail = JSON.stringify(item);
